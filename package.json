@@ -1,0 +1,17 @@
+{
+  "name": "arqui-tarea",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "boron": "^0.2.3",
+    "install": "^0.8.1",
+    "meteor-node-stubs": "~0.2.0",
+    "npm": "^3.10.6",
+    "react": "^15.3.1",
+    "react-addons-css-transition-group": "^15.3.1",
+    "react-addons-pure-render-mixin": "^15.3.1",
+    "react-dom": "^15.3.1"
+  }
+}
