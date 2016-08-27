@@ -12,27 +12,25 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      hideCompleted: false,
-    }
-    this.timer = setInterval(() => this.forceUpdate(), 5000)
+    this.timer = setInterval(() => this.forceUpdate(), 1000)
   }
 
   componentWillUnmount() {
       clearInterval(this.timer);
   }
 
-  toggleHideCompleted() {
-   this.setState({
-     hideCompleted: !this.state.hideCompleted,
-   })
- }
-
  componentDidMount() {
    Meteor.call('requests.insert')
  }
 
   renderRequests() {
+    if(this.props.requests.length == 0) {
+      return <tr>
+        <th colSpan="5">
+          <h3 className="u-full-width">Loading ...</h3>
+        </th>
+      </tr>
+    }
     return this.props.requests.map((request) => (
       <Request key={request._id} request={request} />
     ));
@@ -45,6 +43,15 @@ class App extends Component {
           <h1>Last requests</h1>
         </header>
         <table className="u-full-width">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Time</th>
+              <th>IP</th>
+              <th>User Agent</th>
+              <th></th>
+            </tr>
+          </thead>
           <ReactCSSTransitionGroup component="tbody" transitionName="table-tr" transitionLeaveTimeout={500} transitionEnterTimeout={500}>
             {this.renderRequests()}
           </ReactCSSTransitionGroup>

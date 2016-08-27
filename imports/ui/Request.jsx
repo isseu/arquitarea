@@ -26,15 +26,15 @@ function timeDifference(current, previous) {
     }
 
     else if (elapsed < msPerMonth) {
-        return 'approximately ' + Math.round(elapsed/msPerDay) + ' days ago';
+        return 'Approximately ' + Math.round(elapsed/msPerDay) + ' days ago';
     }
 
     else if (elapsed < msPerYear) {
-        return 'approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';
+        return 'Approximately ' + Math.round(elapsed/msPerMonth) + ' months ago';
     }
 
     else {
-        return 'approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
+        return 'Approximately ' + Math.round(elapsed/msPerYear ) + ' years ago';
     }
 }
 
@@ -43,25 +43,20 @@ export default class Request extends Component {
 
   constructor() {
     super()
-    this.state = {
-      show_more_info: false
-    }
   }
 
-  toggleShowMoreInfo() {
-    this.setState({ show_more_info: !this.state.show_more_info })
+  toggleShowMoreInfo(event) {
+    event.preventDefault();
     alert(JSON.stringify(this.props.request.headers, null, 2))
   }
 
   render() {
-    // Give tasks a different className when they are checked off,
-    // so that we can style them nicely in CSS
     return (
       <tr>
         <td>{timeDifference(new Date(), this.props.request.createdAt)}</td>
         <td>{this.props.request.createdAt.toTimeString()}</td>
         <td>{this.props.request.ip}</td>
-        <td>{this.props.request.ip}</td>
+        <td>{this.props.request.headers['user-agent']}</td>
         <td>
           <a className="button" href="#" onClick={this.toggleShowMoreInfo.bind(this)}>More Info</a>
         </td>

@@ -10,18 +10,17 @@ body {
   margin: 0;
 }
 
-h1 {
+h1, h3 {
   text-align: center;
 }
 
 button, .button {
-    margin-bottom: 0rem;
+  margin-bottom: 0rem;
 }
 
 .container {
   padding-top: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
+  width: 80%;
 }
 
 table {
